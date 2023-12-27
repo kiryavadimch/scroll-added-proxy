@@ -65,5 +65,3 @@ python main.py
 2) In the accounts.txt file, specify your private keys
 
 3) In the rpc.json file at the path zksync/data/rpc.json we can change the rpc to ours
-
-Info on updates and just a life blog –– https://t.me/sybilwave
