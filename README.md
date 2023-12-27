@@ -6,9 +6,7 @@
 
 ---
 
-🔔 <b>Subscribe to me:</b> https://t.me/sybilwave
-
-🤑 <b>Donate me:</b> 0x00000b0ddce0bfda4531542ad1f2f5fad7b9cde9
+proxy format - http://LOGIN:PASSWORD@IP:PORT
 
 ---
 <h2>🚀 Installation</h2>

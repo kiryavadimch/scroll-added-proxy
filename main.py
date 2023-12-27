@@ -7,7 +7,7 @@ import questionary
 from loguru import logger
 from questionary import Choice
 
-from config import ACCOUNTS
+from config import ACCOUNTS, PROXIES
 from settings import (
     RANDOM_WALLET,
     SLEEP_TO,
@@ -56,8 +56,6 @@ def get_module():
         pointer="✅ "
     ).ask()
     if result == "exit":
-        print("\n❤️ Subscribe to me – https://t.me/sybilwave\n")
-        print("🤑 Donate me: 0x00000b0ddce0bfda4531542ad1f2f5fad7b9cde9")
         sys.exit()
     return result
 
@@ -67,15 +65,16 @@ def get_wallets():
         {
             "id": _id,
             "key": key,
-        } for _id, key in enumerate(ACCOUNTS, start=1)
+            "proxy": proxy
+        } for _id, (key, proxy) in enumerate(zip(ACCOUNTS,PROXIES), start=1)
     ]
 
     return wallets
 
 
-async def run_module(module, account_id, key):
+async def run_module(module, account_id, key, proxy):
     try:
-        await module(account_id, key)
+        await module(account_id, key, proxy)
     except Exception as e:
         logger.error(e)
 
@@ -85,8 +84,8 @@ async def run_module(module, account_id, key):
     await sleep(SLEEP_FROM, SLEEP_TO)
 
 
-def _async_run_module(module, account_id, key):
-    asyncio.run(run_module(module, account_id, key))
+def _async_run_module(module, account_id, key, proxy):
+    asyncio.run(run_module(module, account_id, key, proxy))
 
 
 def main(module):
@@ -102,13 +101,12 @@ def main(module):
                 module,
                 account.get("id"),
                 account.get("key"),
+                account.get("proxy"),
             )
             time.sleep(random.randint(THREAD_SLEEP_FROM, THREAD_SLEEP_TO))
 
 
 if __name__ == '__main__':
-    print("❤️ Subscribe to me – https://t.me/sybilwave\n")
-
     logger.add("logging.log")
 
     module = get_module()
@@ -116,6 +114,3 @@ if __name__ == '__main__':
         get_tx_count()
     else:
         main(module)
-
-    print("\n❤️ Subscribe to me – https://t.me/sybilwave\n")
-    print("🤑 Donate me: 0x00000b0ddce0bfda4531542ad1f2f5fad7b9cde9")

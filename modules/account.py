@@ -17,16 +17,17 @@ from utils.sleeping import sleep
 
 
 class Account:
-    def __init__(self, account_id: int, private_key: str, chain: str) -> None:
+    def __init__(self, account_id: int, private_key: str, chain: str, proxy: None) -> None:
         self.account_id = account_id
         self.private_key = private_key
         self.chain = chain
         self.explorer = RPC[chain]["explorer"]
         self.token = RPC[chain]["token"]
+        self.proxy = proxy
 
         self.w3 = AsyncWeb3(
             AsyncWeb3.AsyncHTTPProvider(random.choice(RPC[chain]["rpc"])),
-            middlewares=[async_geth_poa_middleware]
+            middlewares=[async_geth_poa_middleware],request_kwargs={"proxies":{ 'http' : self.proxy, 'https' : self.proxy }}
         )
 
         self.account = EthereumAccount.from_key(private_key)

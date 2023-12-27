@@ -9,6 +9,9 @@ with open('data/abi/erc20_abi.json') as file:
 with open("accounts.txt", "r") as file:
     ACCOUNTS = [row.strip() for row in file]
 
+with open("proxies.txt", "r") as proxies_file:
+    PROXIES = [row.strip() for row in proxies_file]
+
 with open('data/abi/bridge/deposit.json') as file:
     DEPOSIT_ABI = json.load(file)
 

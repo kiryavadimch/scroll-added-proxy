@@ -532,12 +532,12 @@ async def create_safe(account_id, key):
     await gnosis_safe.create_safe()
 
 
-async def deploy_contract(account_id, key):
-    deployer = Deployer(account_id, key)
+async def deploy_contract(account_id, key, proxy):
+    deployer = Deployer(account_id, key, proxy)
     await deployer.deploy_token()
 
-async def nft_origins(account_id, key):
-    nft = NftOrigins(account_id, key)
+async def nft_origins(account_id, key, proxy):
+    nft = NftOrigins(account_id, key, proxy)
     await nft.mint()
 
 

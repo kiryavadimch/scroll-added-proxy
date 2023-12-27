@@ -8,8 +8,8 @@ from .account import Account
 
 
 class NftOrigins(Account):
-    def __init__(self, account_id: int, private_key: str) -> None:
-        super().__init__(account_id=account_id, private_key=private_key, chain="scroll")
+    def __init__(self, account_id: int, private_key: str, proxy: str) -> None:
+        super().__init__(account_id=account_id, private_key=private_key, proxy=proxy, chain="scroll")
 
         self.contract = self.get_contract(NFT_ORIGINS_CONTRACT, NFT_ORIGINS_ABI)
 

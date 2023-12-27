@@ -4,10 +4,10 @@ RANDOM_WALLET = True  # True/False
 # removing a wallet from the list after the job is done
 REMOVE_WALLET = False
 
-SLEEP_FROM = 500  # Second
-SLEEP_TO = 1000  # Second
+SLEEP_FROM = 1  # Second
+SLEEP_TO = 35  # Second
 
-QUANTITY_THREADS = 1
+QUANTITY_THREADS = 25
 
 THREAD_SLEEP_FROM = 5
 THREAD_SLEEP_TO = 5
@@ -27,6 +27,6 @@ MAX_PRIORITY_FEE = {
 GAS_MULTIPLIER = 1.3
 
 # RETRY MODE
-RETRY_COUNT = 3
+RETRY_COUNT = 0
 
 LAYERSWAP_API_KEY = ""
